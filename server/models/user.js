@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const schema = new mongoose.Schema({
     firstName: {
@@ -44,8 +45,8 @@ const schema = new mongoose.Schema({
 }, { timestamps: true });
 
 // To hash password
-schema.pre("save", async function(next){
-    if(!this.isModified("password")){
+schema.pre("save", async function (next) {
+    if (!this.isModified("password")) {
         next();
     }
 
@@ -54,8 +55,18 @@ schema.pre("save", async function(next){
 })
 
 // To compare password
-schema.methods.comparePassword = async function(enteredPassword){
+schema.methods.comparePassword = async function (enteredPassword) {
     return await bcrypt.compare(enteredPassword, this.password);
+}
+
+// Sign access token
+schema.methods.signAccessToken = async function () {
+    return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET)
+}
+
+// Sign refresh token
+schema.methods.signRefreshToken = async function () {
+    return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN_SECRET)
 }
 
 export default mongoose.model("user", schema);

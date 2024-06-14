@@ -1,13 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Learnify - Activation Code</title>
+  <title>Activate your Learnify account</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      padding: 20px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      color: #333333;
+    }
+    p {
+      color: #666666;
+      line-height: 1.6;
+    }
+    .activation-code {
+      font-size: 20px;
+      font-weight: bold;
+      color: #5AAD00;
+      border: 1px solid #5AAD00;
+      padding: 10px;
+      display: inline-block;
+      margin: 20px 0;
+    }
+    .footer {
+      font-size: 12px;
+      color: #999999;
+      text-align: center;
+      margin-top: 30px;
+    }
+  </style>
 </head>
 <body>
-    <h1>Welcome to Learnify</h1>
-    <h2>Hello <%= user.firstName %> </h2>
-    <h2> Your activation token : <%= activationCode %></h2>
+  <div class="container">
+    <h1>Welcome to Learnify,  <%= user.firstName %>  <%= user.lastName %>!</h1>
+    <p>Thank you for signing up. Please activate your account using the code below:</p>
+    <p class="activation-code"> <%= activationCode %></p>
+    <p>If you didn't sign up for Learnify, please ignore this email.</p>
+    <div class="footer">
+      &copy; 2024 Learnify. All rights reserved.
+    </div>
+  </div>
 </body>
 </html>
