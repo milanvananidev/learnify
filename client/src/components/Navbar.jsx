@@ -30,6 +30,10 @@ const Navbar = () => {
     }
   ]
 
+  const hideNavPaths = ['/register', '/login'];
+
+  if (hideNavPaths.includes(path)) { return null }
+
   return (
     <div className="w-full border-b-2 border-zinc-100 shadow-sm">
       <nav className="container relative flex flex-wrap items-center justify-between p-5 mx-auto lg:justify-between xl:px-0">
@@ -81,7 +85,7 @@ const Navbar = () => {
                       </Link>
                     ))}
                     <Link href="/" className="w-full px-6 py-2 mt-3 flex text-lg justify-center align-middle gap-2 text-center text-white bg-primary rounded-md lg:ml-5">
-                      Login <IoIosArrowForward color="#fff" size={27} /> 
+                      Login <IoIosArrowForward color="#fff" size={27} />
                     </Link>
                   </>
                 </Disclosure.Panel>
@@ -105,7 +109,7 @@ const Navbar = () => {
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
           <Link href="/" className="px-6 py-2 text-white bg-primary text-lg rounded-md flex justify-center align-middle gap-3 md:ml-5">
-          Login <IoIosArrowForward color="#fff" size={25} /> 
+            Login <IoIosArrowForward color="#fff" size={25} />
           </Link>
         </div>
       </nav>
