@@ -84,7 +84,7 @@ const Navbar = () => {
                         {item.title}
                       </Link>
                     ))}
-                    <Link href="/" className="w-full px-6 py-2 mt-3 flex text-lg justify-center align-middle gap-2 text-center text-white bg-primary rounded-md lg:ml-5">
+                    <Link href="/login" className="w-full px-6 py-2 mt-3 flex text-lg justify-center align-middle gap-2 text-center text-white bg-primary rounded-md lg:ml-5">
                       Login <IoIosArrowForward color="#fff" size={27} />
                     </Link>
                   </>
@@ -108,7 +108,7 @@ const Navbar = () => {
         </div>
 
         <div className="hidden mr-3 space-x-4 lg:flex nav__item">
-          <Link href="/" className="px-6 py-2 text-white bg-primary text-lg rounded-md flex justify-center align-middle gap-3 md:ml-5">
+          <Link href="/login" className="px-6 py-2 text-white bg-primary text-lg rounded-md flex justify-center align-middle gap-3 md:ml-5">
             Login <IoIosArrowForward color="#fff" size={25} />
           </Link>
         </div>

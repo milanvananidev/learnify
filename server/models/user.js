@@ -64,9 +64,4 @@ schema.methods.signAccessToken = async function () {
     return jwt.sign({ id: this._id }, process.env.ACCESS_TOKEN_SECRET)
 }
 
-// Sign refresh token
-schema.methods.signRefreshToken = async function () {
-    return jwt.sign({ id: this._id }, process.env.REFRESH_TOKEN_SECRET)
-}
-
 export default mongoose.model("user", schema);

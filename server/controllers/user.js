@@ -121,7 +121,6 @@ export const loginUser = async (req, res, next) => {
 
 export const logoutUser = async (req, res, next) => {
     res.cookie("access_token", "", { maxAge: 1 })
-    res.cookie("refresh_token", "", { maxAge: 1 })
 
     await redis.del(req.user._id)
 

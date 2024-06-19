@@ -1,6 +1,7 @@
 'use client'
 
 import React, { useState } from 'react';
+import Link from 'next/link';
 import toast from 'react-hot-toast';
 
 const Register = () => {
@@ -187,12 +188,12 @@ const Register = () => {
                             </button>
                             <p className="text-sm font-light text-gray-500 dark:text-gray-400">
                                 Already have an account?{" "}
-                                <a
-                                    href="#"
+                                <Link
+                                    href="/login"
                                     className="font-medium text-primary-600 hover:underline dark:text-primary-500"
                                 >
                                     Login here
-                                </a>
+                                </Link>
                             </p>
                         </form>
                     </div>
