@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+import { v2 as cloudinary } from 'cloudinary';
 import UserModel from '../models/user.js';
 import ErrorHandler from '../utils/error.js';
 import sendMail from '../utils/sendMail.js';
@@ -123,10 +124,103 @@ export const loginUser = async (req, res, next) => {
 export const logoutUser = async (req, res, next) => {
     res.cookie("access_token", "", { maxAge: 1 })
 
-    await redis.del(req.user.id)
+    await redis.del(req.user._id)
 
     res.status(200).json({
         success: true,
         message: 'User logged out successfully'
     })
+}
+
+export const getUserInfo = async (req, res, next) => {
+    try {
+        const user = await UserModel.findOne({ _id: req.user._id });
+
+        if (!user) {
+            next(new ErrorHandler("User not found", 400))
+        }
+
+        return res.status(200).json({
+            success: true,
+            user
+        });
+
+    } catch (error) {
+        next(new ErrorHandler("Internal server error", 500))
+    }
+}
+
+export const updateUserInfo = async (req, res, next) => {
+    const { firstName, lastName } = req.body;
+    const { email } = req.user;
+
+    try {
+        await UserModel.findOneAndUpdate({ email }, {
+            firstName, lastName
+        });
+
+        return res.status(200).json({
+            success: true,
+            message: 'User updated succssfully'
+        });
+    } catch (error) {
+        next(new ErrorHandler('Internal server error', 500));
+    }
+}
+
+export const updateUserPassword = async (req, res, next) => {
+    const { oldPassword, newPassword } = req.body;
+
+    try {
+        const user = await UserModel.findOne({ _id: req.user._id }).select("+password");
+
+        const isPasswordMatch = await user.comparePassword(oldPassword);
+
+        if (!isPasswordMatch) {
+            return next(new ErrorHandler("Password did not match", 400))
+        }
+
+        user.password = newPassword;
+
+        user.save();
+
+        res.status(200).json({
+            success: true,
+            message: 'Password updated successfully'
+        });
+
+    } catch (error) {
+        console.log(error.message)
+        next(new ErrorHandler('Internal server error', 500));
+    }
+}
+
+export const updateUserAvatar = async (req, res, next) => {
+    const { avatar } = req.body;
+    const userId = req.user._id;
+
+    const user = await UserModel.findOne({ _id: userId });
+
+    if (avatar && user) {
+        if (user?.avatar?.public_id) {
+            await cloudinary.uploader.destroy(user?.avatar?.public_id);
+        } 
+
+        const cloud = await cloudinary.uploader.upload(avatar, {
+            folder: 'users',
+            width: 150
+        });
+
+        user.avatar = {
+            public_id: cloud.public_id,
+            url: cloud.secure_url
+        }
+
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            user
+        })
+    }
 }

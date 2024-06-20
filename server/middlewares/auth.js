@@ -1,5 +1,6 @@
 import ErrorHandler from "../utils/error.js";
 import jwt from 'jsonwebtoken';
+import UserModel from '../models/user.js'
 import { redis } from "../utils/redis.js";
 
 export const isAuthenticated = async (req, res, next) => {
@@ -17,10 +18,21 @@ export const isAuthenticated = async (req, res, next) => {
             return res.status(401).json({ message: "Session expired or invalid" });
         }
 
-        req.user = decoded;
+        let user = await UserModel.findOne({ _id: decoded.id });
+        req.user = user;
         next();
     } catch (error) {
         console.log(error)
         return res.status(401).json({ message: "Invalid token" });
     }
 };
+
+export const authorizeRoles = (...roles) => {
+    return (req, res, next) => {
+        if (!roles.includes(req.user?.role || '')) {
+            return next(new ErrorHandler(`Role ${req.user?.role} is not allowed to access this.`))
+        }
+
+        next();
+    }
+}

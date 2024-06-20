@@ -1,6 +1,7 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import cloudinary from 'cloudinary';
 import cookieParser from 'cookie-parser';
 import { connectDB } from './database/db.js';
 import { errorMiddleware } from './utils/error.js';
@@ -17,6 +18,13 @@ app.use(express.json());
 app.use(cors({
     origin: process.env.ORIGIN
 }));
+
+// Storage service
+cloudinary.v2.config({
+    cloud_name: process.env.CLOUD_NAME,
+    api_key: process.env.CLOUD_API_KEY,
+    api_secret: process.env.CLOUD_API_SECRET
+});
 
 // All Routes
 app.use('/api/v1/user', userRouter);
