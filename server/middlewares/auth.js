@@ -3,35 +3,24 @@ import jwt from 'jsonwebtoken';
 import { redis } from "../utils/redis.js";
 
 export const isAuthenticated = async (req, res, next) => {
-    const access_token = req.cookies.access_token;
+    const { access_token } = req.cookies;
 
     if (!access_token) {
-        return res.status(400).json({
-            success: false,
-            message: "Please login to access"
-        })
-    }
-    const decoded = jwt.decode(access_token, process.env.ACCESS_TOKEN_SECRET);
-
-    console.log(decoded)
-
-    if (!decoded) {
-        return res.status(400).json({
-            success: false,
-            message: "Access token is not valid"
-        })
+        return res.status(401).json({ message: "Not authenticated" });
     }
 
-    let user = await redis.get(decoded.id)
+    try {
+        const decoded = jwt.verify(access_token, process.env.ACCESS_TOKEN_SECRET);
+        const storedToken = await redis.get(decoded.id);
 
-    if (!user) {
-        return res.status(400).json({
-            success: false,
-            message: "User not found"
-        })
+        if (!storedToken || storedToken !== access_token) {
+            return res.status(401).json({ message: "Session expired or invalid" });
+        }
+
+        req.user = decoded;
+        next();
+    } catch (error) {
+        console.log(error)
+        return res.status(401).json({ message: "Invalid token" });
     }
-
-    req.user = JSON.parse(user);
-
-    next();
-}
+};

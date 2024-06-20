@@ -3,7 +3,7 @@ import { redis } from "./redis.js";
 export const sendToken = async (user, statusCode, res) => {
     const accessToken = await user.signAccessToken();
 
-    redis.set(user._id, JSON.stringify(user))
+    await redis.set(user._id.toString(), accessToken, 'EX', parseInt(process.env.ACCESS_TOKEN_EXPIRE) * 24 * 60 * 60);
 
     const acessTokenExpire = parseInt(process.env.ACCESS_TOKEN_EXPIRE || 3)
 

@@ -98,31 +98,32 @@ export const createActivationToken = (user) => {
 }
 
 export const loginUser = async (req, res, next) => {
-    const { email, password } = req.body;
+    const { login, password } = req.body;
 
-    if (!email || !password) {
-        return next(new ErrorHandler("Please enter email and password", 400))
+    if (!login || !password) {
+        return next(new ErrorHandler("Please enter email/username and password", 400));
     }
 
-    const user = await UserModel.findOne({ email }).select("+password");
+    // Find user by email or username
+    const user = await UserModel.findOne({ $or: [{ email: login }, { userName: login }] }).select("+password");
 
     if (!user) {
-        return next(new ErrorHandler("Invalid email or password", 400));
+        return next(new ErrorHandler("Invalid email/username or password", 400));
     }
 
     const isPasswordMatch = await user.comparePassword(password);
 
     if (!isPasswordMatch) {
-        return next(new ErrorHandler("Invalid email or password", 400))
+        return next(new ErrorHandler("Invalid email/username or password", 400));
     }
 
-    sendToken(user, 200, res);
+    await sendToken(user, 200, res);
 }
 
 export const logoutUser = async (req, res, next) => {
     res.cookie("access_token", "", { maxAge: 1 })
 
-    await redis.del(req.user._id)
+    await redis.del(req.user.id)
 
     res.status(200).json({
         success: true,
