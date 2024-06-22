@@ -15,8 +15,19 @@ connectDB();
 app.use(cookieParser());
 app.use(express.json());
 
+console.log()
+
+const origins = process.env.ORIGIN;
+
 app.use(cors({
-    origin: process.env.ORIGIN
+    origin: function (origin, callback) {
+        if (origins.indexOf(origin) !== -1) {
+          callback(null, true)
+        } else {
+          callback(new Error('Not allowed by CORS'))
+        }
+      },
+    credentials: true
 }));
 
 // Storage service

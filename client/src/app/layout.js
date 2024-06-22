@@ -5,6 +5,7 @@ import Footer from "../components/Footer";
 
 import "./globals.css";
 import Head from 'next/head';
+import { Providers } from '../redux/provider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,13 +15,15 @@ const poppins = Poppins({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-        <Head>
-          <title>Learnify</title>
-        </Head>
+      <Head>
+        <title>Learnify</title>
+      </Head>
       <body className={poppins.className}>
-        <Navbar />
-        {children}
-        <Footer />
+        <Providers>
+          <Navbar />
+          {children}
+          <Footer />
+        </Providers>
         <Toaster />
       </body>
     </html>

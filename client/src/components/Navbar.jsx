@@ -30,7 +30,7 @@ const Navbar = () => {
     }
   ]
 
-  const hideNavPaths = ['/register', '/login'];
+  const hideNavPaths = ['/register', '/login', '/verification'];
 
   if (hideNavPaths.includes(path)) { return null }
 

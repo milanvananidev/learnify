@@ -1,14 +1,34 @@
 'use client'
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Link from 'next/link';
 import toast from 'react-hot-toast';
+import { useRegisterMutation } from '../../redux/features/auth/authApi';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
+
+    const router = useRouter();
+    const [register, { data, error, isSuccess }] = useRegisterMutation();
+
+    useEffect(() => {
+        if (isSuccess) {
+            toast('Registration Successful');
+            router.push('/verification');
+        }
+
+        if (error) {
+            if ("data" in error) {
+                const errorData = error.data;
+                toast.error(errorData?.message)
+            }
+        }
+    }, [isSuccess, error])
+
     const [formData, setFormData] = useState({
         firstName: '',
         lastName: '',
-        username: '',
+        userName: '',
         email: '',
         password: '',
         confirmPassword: '',
@@ -25,9 +45,7 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        // Add form submission logic here
-        toast("there is")
-        console.log('Form submitted', formData);
+        register({});
     };
 
     return (
@@ -81,18 +99,18 @@ const Register = () => {
                                 </div>
                                 <div>
                                     <label
-                                        htmlFor="username"
+                                        htmlFor="userName"
                                         className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
                                     >
                                         Username
                                     </label>
                                     <input
                                         type="text"
-                                        name="username"
-                                        id="username"
+                                        name="userName"
+                                        id="userName"
                                         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                         placeholder="johndoe"
-                                        value={formData.username}
+                                        value={formData.userName}
                                         onChange={handleChange}
                                         required
                                     />
