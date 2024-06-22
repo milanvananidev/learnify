@@ -20,6 +20,8 @@ export const sendToken = async (user, statusCode, res) => {
 
     res.cookie("access_token", accessToken, accessTokenOptions);
 
+    user.password = undefined;
+
     res.status(statusCode).json({
         success: true,
         accessToken,
