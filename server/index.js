@@ -8,6 +8,8 @@ import { errorMiddleware } from './utils/error.js';
 
 import userRouter from './routes/user.js';
 import courseRouter from './routes/course.js';
+import orderRouter from './routes/order.js';
+import notificationRouter from './routes/notification.js';
 
 const app = express();
 dotenv.config();
@@ -41,6 +43,8 @@ cloudinary.v2.config({
 // All Routes
 app.use('/api/v1/user', userRouter);
 app.use('/api/v1/course', courseRouter);
+app.use('/api/v1/order', orderRouter);
+app.use('/api/v1/notification', notificationRouter);
 
 app.get('/healthcheck', (req, res) => {
     res.send("<h1>Server is working 🎉</h1>")

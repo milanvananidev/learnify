@@ -1,4 +1,5 @@
 import CourseModel from '../models/course.js';
+import NotificationModel from '../models/notification.js';
 import { createCourse } from '../services/course.js';
 import ErrorHandler from '../utils/error.js';
 import { v2 as cloudinary } from 'cloudinary';
@@ -166,6 +167,12 @@ export const addQuestion = async (req, res, next) => {
 
         courseContent.questions.push(newQuestion);
 
+        await NotificationModel.create({
+            user: req.user._id,
+            title: 'New Question',
+            message: `You have a new question in ${courseContent.title}`
+        })
+
         await course?.save();
 
         res.status(200).json({
@@ -208,8 +215,12 @@ export const addReply = async (req, res, next) => {
         question.questionReplies.push(newAns);
 
         // if user reply
-        if (req.user._id && question.user._id) {
-
+        if (req.user._id === question.user._id) {
+            await NotificationModel.create({
+                user: req.user._id,
+                title: 'New Question Reply',
+                message: `You have a new question reply in ${courseContent.title}`
+            })
         } else {
             // send notification or email to user if anyone reply in their question 
         }

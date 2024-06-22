@@ -1,5 +1,4 @@
 import CourseModel from '../models/course.js';
-import ErrorHandler from '../utils/error.js';
 
 export const createCourse = async (data, res) => {
     try {
