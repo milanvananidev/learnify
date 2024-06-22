@@ -40,7 +40,6 @@ const schema = new mongoose.Schema({
     },
     courses: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'course'
     }]
 }, { timestamps: true });
 
