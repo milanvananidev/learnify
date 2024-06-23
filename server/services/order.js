@@ -14,3 +14,17 @@ export const newOrderService = async (data, res, next) => {
         next(new ErrorHandler("Internal server error when creteing order", 500))
     }
 }
+
+export const getAllOrders = async (req, res, next) => {
+    try {
+        const orders = await OrderModel.find().sort({ createdAt: -1 });
+
+        res.status(201).json({
+            success: true,
+            orders
+        })
+
+    } catch (error) {
+        next(new ErrorHandler("Internal server error when creteing order", 500))
+    }
+}

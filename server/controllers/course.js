@@ -1,6 +1,6 @@
 import CourseModel from '../models/course.js';
 import NotificationModel from '../models/notification.js';
-import { createCourse } from '../services/course.js';
+import { createCourse, getAllAdminCourses } from '../services/course.js';
 import ErrorHandler from '../utils/error.js';
 import { v2 as cloudinary } from 'cloudinary';
 import { redis } from '../utils/redis.js';
@@ -104,7 +104,7 @@ export const getAllCourses = async (req, res, next) => {
 
         const courses = await CourseModel.find({}).select("-courseData.videoUrl -courseData.suggestions -courseData.questions -courseData.link");
 
-        redis.set('allCourses', JSON.stringify(courses))
+        redis.set('allCourses', JSON.stringify(courses), 'EX', 604800)
 
         res.status(200).json({
             success: true,
@@ -284,6 +284,30 @@ export const addReview = async (req, res, next) => {
 
     } catch (error) {
         console.log(error)
+        next(new ErrorHandler("Internal server error", 500))
+    }
+}
+
+// Admin only routes
+export const getCourses = async (req, res, next) => {
+    try {
+        await getAllAdminCourses(res);
+    } catch (error) {
+        next(new ErrorHandler("Internal server error", 500))
+    }
+}
+
+export const deleteCourse = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await CourseModel.findByIdAndDelete(id);
+
+        res.status(200).json({
+            success: true,
+            message: 'Course successfully deleted'
+        });
+
+    } catch (error) {
         next(new ErrorHandler("Internal server error", 500))
     }
 }

@@ -10,6 +10,7 @@ import userRouter from './routes/user.js';
 import courseRouter from './routes/course.js';
 import orderRouter from './routes/order.js';
 import notificationRouter from './routes/notification.js';
+import analyticsRouter from './routes/analytics.js';
 
 const app = express();
 dotenv.config();
@@ -45,6 +46,7 @@ app.use('/api/v1/user', userRouter);
 app.use('/api/v1/course', courseRouter);
 app.use('/api/v1/order', orderRouter);
 app.use('/api/v1/notification', notificationRouter);
+app.use('/api/v1/analytics', analyticsRouter);
 
 app.get('/healthcheck', (req, res) => {
     res.send("<h1>Server is working 🎉</h1>")

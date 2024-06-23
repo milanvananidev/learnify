@@ -3,7 +3,7 @@ import UserModel from '../models/user.js';
 import CourseModel from '../models/course.js';
 import NotificationModel from '../models/notification.js';
 import ErrorHandler from '../utils/error.js';
-import { newOrderService } from '../services/order.js';
+import { getAllOrders, newOrderService } from '../services/order.js';
 
 export const createOrder = async (req, res, next) => {
     try {
@@ -58,7 +58,14 @@ export const createOrder = async (req, res, next) => {
         
         newOrderService(data, res, next);
     } catch (error) {
-        console.log(error)
+        next(new ErrorHandler("Internal server error", 500))
+    }
+};
+
+export const getOrders = async (req, res, next) => {
+    try {
+        await getAllOrders(req, res, next)
+    } catch (error) {
         next(new ErrorHandler("Internal server error", 500))
     }
 }
