@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Activate Your Learnify Account</title>
+  <title>Reply to Your Question - Learnify</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -22,21 +22,20 @@
     h1 {
       color: #333333;
       font-size: 24px;
+      border-bottom: 2px solid #007BFF;
+      padding-bottom: 10px;
     }
     p {
       color: #666666;
       line-height: 1.6;
       font-size: 16px;
     }
-    .activation-code {
-      font-size: 24px;
+    .question {
       font-weight: bold;
-      color: #5AAD00;
-      border: 2px dashed #5AAD00;
-      padding: 15px;
-      display: inline-block;
-      margin: 20px 0;
-      background-color: #f0f8ff;
+      color: #333333;
+    }
+    .answer {
+      margin-top: 10px;
     }
     .footer {
       font-size: 12px;
@@ -58,10 +57,12 @@
     <div class="logo">
       <img src="https://content.pstmn.io/af4f47eb-bff0-46d4-864e-100193589975/bG9nby5wbmc=" alt="Learnify Logo">
     </div>
-    <h1>Welcome to Learnify, <%= user.firstName %>  <%= user.lastName %>!</h1>
-    <p>Thank you for signing up. Please activate your account using the code below:</p>
-    <p class="activation-code"><%= activationCode %></p>
-    <p>If you didn't sign up for Learnify, please ignore this email.</p>
+    <h1>Reply to Your Question</h1>
+    <p><span class="question">Question:</span> <%= emailData.questionAsked %></p>
+    <div class="answer">
+      <p><span class="question">Answer:</span> <%= emailData.answer %></p>
+    </div>
+    <p>For more details about the course "<%= emailData.courseName %>", you can visit the course page.</p>
     <div class="footer">
       &copy; <span id="year"></span> Learnify. All rights reserved.
     </div>

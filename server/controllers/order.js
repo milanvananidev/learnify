@@ -1,9 +1,9 @@
-import OrderModel from '../models/order.js';
 import UserModel from '../models/user.js';
 import CourseModel from '../models/course.js';
 import NotificationModel from '../models/notification.js';
 import ErrorHandler from '../utils/error.js';
-import { getAllOrders, newOrderService } from '../services/order.js';
+import { newOrderService } from '../services/order.js';
+import sendMail from '../utils/sendMail.js';
 
 export const createOrder = async (req, res, next) => {
     try {
@@ -35,12 +35,21 @@ export const createOrder = async (req, res, next) => {
                 _id: course._id,
                 name: course.name,
                 price: course.price,
-                date: new Date().toLocaleDateString('en-US', {year: 'numeric', month: 'long', day: 'numeric'})
+                date: new Date().toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' }),
+                accessPage: `${process.env.FRONTEND_URL}/course-access/${course._id}`
             }
-            
         }
 
-        // send mail here
+        try {
+            sendMail({
+                email: user.email,
+                subject: 'Order Confirmation - Learnify',
+                template: 'order-confirmation.ejs',
+                data: mailData
+            });
+        } catch (error) {
+
+        }
 
         user?.courses?.push(course._id);
 
@@ -55,7 +64,7 @@ export const createOrder = async (req, res, next) => {
         course.purchased ? course.purchased += 1 : course.purchased;
 
         await course.save();
-        
+
         newOrderService(data, res, next);
     } catch (error) {
         next(new ErrorHandler("Internal server error", 500))
