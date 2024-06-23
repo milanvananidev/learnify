@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation - Learnify</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 40px auto;
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333333;
+            font-size: 24px;
+            border-bottom: 2px solid #5AAD00;
+            padding-bottom: 10px;
+        }
+
+        p {
+            color: #666666;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+
+        .order-details {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .order-details th,
+        .order-details td {
+            text-align: left;
+            padding: 12px;
+            border-bottom: 1px solid #dddddd;
+        }
+
+        .order-details th {
+            background-color: #f4f4f4;
+            color: #333333;
+        }
+
+        .footer {
+            font-size: 12px;
+            color: #999999;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .logo {
+            text-align: start;
+            margin-bottom: 30px;
+        }
+
+        .logo img {
+            max-width: 150px;
+        }
+
+        .cta-button {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 20px;
+            color: #ffffff !important;
+            background-color: #5AAD00;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="https://content.pstmn.io/af4f47eb-bff0-46d4-864e-100193589975/bG9nby5wbmc=" alt="Learnify Logo">
+        </div>
+        <h1>Order Confirmation</h1>
+        <p>Thank you for your purchase! Below are the details of your order:</p>
+        <table class="order-details">
+            <tr>
+                <th>Order ID</th>
+                <td>
+                    <%= order._id %>
+                </td>
+            </tr>
+            <tr>
+                <th>Course Name</th>
+                <td>
+                    <%= order.name %>
+                </td>
+            </tr>
+            <tr>
+                <th>Price</th>
+                <td>₹<%= order.price %>
+                </td>
+            </tr>
+            <tr>
+                <th>Order Date</th>
+                <td>
+                    <%= order.date %>
+                </td>
+            </tr>
+        </table>
+        <p>Please use the link below to get started.</p>
+        <a href="<%= order.accessPage %>" class="cta-button">Access Now</a>
+        <div class="footer">
+            &copy; <span id="year"></span> Learnify. All rights reserved.
+        </div>
+    </div>
+    <script>
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+
+</html>

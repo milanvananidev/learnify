@@ -5,6 +5,7 @@ import ErrorHandler from '../utils/error.js';
 import { v2 as cloudinary } from 'cloudinary';
 import { redis } from '../utils/redis.js';
 import mongoose from 'mongoose';
+import sendMail from '../utils/sendMail.js';
 
 export const uploadCourse = async (req, res, next) => {
     try {
@@ -223,6 +224,25 @@ export const addReply = async (req, res, next) => {
             })
         } else {
             // send notification or email to user if anyone reply in their question 
+            const emailData = {
+                courseName: course.name,
+                videoName: courseContent.title,
+                videoUrl: courseContent.videoUrl,
+                questionAsked: question.question,
+                answert: answer
+            }
+
+            try {
+                sendMail({
+                    email: req.user.email,
+                    subject: 'Reply to Your Question - Learnify',
+                    template: 'question-reply.ejs',
+                    data: emailData
+                });
+            } catch (error) {
+    
+            }
+            
         }
 
         await course?.save();
