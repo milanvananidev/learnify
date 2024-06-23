@@ -14,3 +14,18 @@ export const createCourse = async (data, res) => {
         });
     }
 }
+
+export const getAllAdminCourses = async (res) => {
+    try {
+        const allCourses = await CourseModel.find().sort({ createdAt: -1 });
+        res.status(201).json({
+            success: true,
+            courses: allCourses
+        });
+    } catch (error) {
+        res.status(500).json({
+            success: false,
+            message: 'Internal server error'
+        });
+    }
+}

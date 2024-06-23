@@ -5,6 +5,7 @@ import ErrorHandler from '../utils/error.js';
 import sendMail from '../utils/sendMail.js';
 import { sendToken } from '../utils/jwt.js';
 import { redis } from '../utils/redis.js';
+import { getAllUsers } from '../services/user.js';
 
 export const registerUser = async (req, res, next) => {
 
@@ -204,7 +205,7 @@ export const updateUserAvatar = async (req, res, next) => {
     if (avatar && user) {
         if (user?.avatar?.public_id) {
             await cloudinary.uploader.destroy(user?.avatar?.public_id);
-        } 
+        }
 
         const cloud = await cloudinary.uploader.upload(avatar, {
             folder: 'users',
@@ -222,5 +223,48 @@ export const updateUserAvatar = async (req, res, next) => {
             success: true,
             user
         })
+    }
+}
+
+// Admin routes
+export const getUsers = async (req, res, next) => {
+    try {
+        await getAllUsers(res);
+    } catch (error) {
+        next(new ErrorHandler("Internal server error", 500))
+    }
+};
+
+export const updateUserRole = async (req, res, next) => {
+    try {
+        const { id, role } = req.body;
+
+        const user = await UserModel.findById(id);
+
+        user.role = role;
+
+        await user.save();
+
+        return res.status(200).json({
+            success: true,
+            message: 'User role updated'
+        })
+
+    } catch (error) {
+        next(new ErrorHandler("Internal server error", 500))
+    }
+}
+
+export const deleteUser = async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        await UserModel.findByIdAndDelete(id);
+        return res.status(200).json({
+            success: true,
+            message: 'User deleted successfully'
+        })
+
+    } catch (error) {
+        next(new ErrorHandler("Internal server error", 500))
     }
 }
