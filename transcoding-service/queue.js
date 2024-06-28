@@ -2,27 +2,26 @@ import dotenv from 'dotenv';
 import { Queue, Worker } from 'bullmq';
 import IORedis from 'ioredis';
 import path from 'path';
-import fs from 'fs';
 import ffmpeg from 'fluent-ffmpeg';
-import { deleteFile } from './utils.js'; 
+import { deleteFile, deleteDir } from './utils.js'; 
 
 dotenv.config();
 
 const redisOptions = {
   maxRetriesPerRequest: null,
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 };
 
 const redisConnection = new IORedis(process.env.REDIS_URL, redisOptions);
 
 const videoQueue = new Queue('video-transcoding', {
-  connection: redisConnection
+  connection: redisConnection,
 });
 
-const worker = new Worker('video-transcoding', async job => {
-  const { inputFilePath, outputDir, uploadId } = job.data;
+const worker = new Worker('video-transcoding', async (job) => {
+  const { inputFilePath, outputDir } = job.data;
   const hlsPath = path.join(outputDir, 'index.m3u8');
 
   return new Promise((resolve, reject) => {
@@ -34,20 +33,28 @@ const worker = new Worker('video-transcoding', async job => {
         '-hls_time 10',
         '-hls_playlist_type vod',
         `-hls_segment_filename ${outputDir}/segment%03d.ts`,
-        '-start_number 0'
+        '-start_number 0',
       ])
-      .output(hlsPath)
-      .on('end', () => {
-        // Delete the original uploaded file after successful transcoding
-        deleteFile(inputFilePath);
+      .output(hlsPath) // not a good way, need to store in s3 ( just for learning )
+      .on('end', async () => {
+        try {
+          deleteFile(inputFilePath);
+          
+          const uploadsDir = path.dirname(inputFilePath);
+          const courseDirInUploads = path.dirname(uploadsDir); 
 
-        resolve({
-          message: 'File processed and original file deleted successfully',
-          videoURL: `${process.env.BASE_URL}/output/${uploadId}/index.m3u8`
-        });
+          await deleteDir(uploadsDir);
+          await deleteDir(courseDirInUploads);
+
+          resolve({
+            message: 'File processed and upload directories deleted successfully',
+          });
+        } catch (error) {
+          reject(new Error('Error during cleanup: ' + error.message));
+        }
       })
       .on('error', (err) => {
-        console.error('Error processing video:', err);
+        // add dead letter quque here.
         reject(new Error('Error processing video'));
       })
       .run();

@@ -23,6 +23,7 @@ const questionSchema = new mongoose.Schema({
 const courseDataSchema = new mongoose.Schema({
     title: String,
     videoUrl: String,
+    videoStatus: String,
     videoThumbnail: String,
     videoSection: String,
     description: String,

@@ -29,6 +29,56 @@ export const uploadCourse = async (req, res, next) => {
     }
 };
 
+export const addCourseContent = async (req, res, next) => {
+    const { id: courseID } = req.params;
+
+    const course = await CourseModel.findById(courseID);
+
+    if (!course) {
+        return next(new ErrorHandler("Course not available", 400));
+    }
+
+    let courseData = course.courseData;
+
+    courseData.push(req.body);
+
+    await course.save();
+
+    res.status(200).json({
+        success: true,
+        message: 'Course data has been updated',
+        course
+    })
+};
+
+// this will only call from our transcoding server
+export const updateVideoStatus = async (req, res, next) => {
+    const { courseID, videoID, status, trascoder_auth } = req.body;
+    
+    if(trascoder_auth !== process.env.TRANSCODER_AUTH){
+        return next(new ErrorHandler("Bad request", 400))
+    }
+    
+    const course = await CourseModel.findById(courseID);
+
+    course.courseData.forEach((item) => {
+        if(item?._id?.toString() === videoID){
+            item.videoStatus = status
+        }
+    });
+
+    await course.save();
+
+    await NotificationModel.create({
+        title: 'Video proccess status',
+        message: `Video Proccessing for ${course.title} / ${videoID} is ${status}`
+    });
+
+    res.status(200).json({
+        success: true
+    })
+};
+
 export const editCourse = async (req, res, next) => {
     try {
         const data = req.body;
@@ -240,9 +290,9 @@ export const addReply = async (req, res, next) => {
                     data: emailData
                 });
             } catch (error) {
-    
+
             }
-            
+
         }
 
         await course?.save();

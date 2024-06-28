@@ -15,3 +15,17 @@ export const deleteFile = (filePath) => {
     }
   });
 };
+
+export const deleteDir = (dirPath) => {
+  return new Promise((resolve, reject) => {
+    fs.rm(dirPath, { recursive: true, force: true }, (err) => {
+      if (err) {
+        console.error(`Error deleting directory: ${dirPath}`, err);
+        reject(err);
+      } else {
+        console.log(`Successfully deleted directory: ${dirPath}`);
+        resolve();
+      }
+    });
+  });
+};
