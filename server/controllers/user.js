@@ -83,10 +83,7 @@ export const activateUser = async (req, res, next) => {
         const user = await UserModel.create({ firstName, lastName, userName, email, password });
         user.password = undefined;
 
-        res.status(201).json({
-            success: true,
-            user
-        })
+        sendToken(user, 201, res);
 
     } catch (error) {
         next(new ErrorHandler(error.message, 500))
