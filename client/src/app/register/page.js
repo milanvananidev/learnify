@@ -5,9 +5,11 @@ import Link from 'next/link';
 import toast from 'react-hot-toast';
 import { useRegisterMutation } from '../../redux/features/auth/authApi';
 import { useRouter } from 'next/navigation';
+import { setUserData } from '../../redux/features/auth/authSlice';
+import { useDispatch } from 'react-redux';
 
 const Register = () => {
-
+    const dispatch = useDispatch();
     const router = useRouter();
     const [register, { data, error, isSuccess }] = useRegisterMutation();
 
@@ -45,7 +47,8 @@ const Register = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        register({});
+        dispatch(setUserData({ data: formData }))
+        register(formData);
     };
 
     return (
