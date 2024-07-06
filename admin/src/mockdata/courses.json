@@ -1,0 +1,713 @@
+[{
+  "_id": "6676f831c8d713a2cc92101e",
+  "name": "Edited mern stack course",
+  "description": "A comprehensive course on full-stack development using MongoDB, Express, React, and Node.js.",
+  "price": 199.99,
+  "estimatedPrice": 249.99,
+  "tags": "MERN, Full-Stack, Development",
+  "level": "Intermediate",
+  "demoUrl": "https://www.youtube.com/watch?v=3QHNwUAC7q4",
+  "thumbnail": {
+    "url" : "https://learn.piyushgarg.dev/_next/image?url=https%3A%2F%2Fdcaj3bhl5hivm.cloudfront.net%2F__courses%2F7804aaeb-0bd3-4627-a5e9-d19e168c7a80%2FCOURSE_IMAGE%2Fnext-14-AnlN_G.jpg&w=640&q=75"
+  },
+  "benifits": [
+    {
+      "title": "Hands-on projects",
+      "_id": "6676f831c8d713a2cc92101f"
+    },
+    {
+      "title": "In-depth tutorials",
+      "_id": "6676f831c8d713a2cc921020"
+    },
+    {
+      "title": "Certificate of completion",
+      "_id": "6676f831c8d713a2cc921021"
+    }
+  ],
+  "reviews": [
+    {
+      "user": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com"
+      },
+      "rating": 5,
+      "comment": "Excellent course! Highly recommend.",
+      "_id": "6676f831c8d713a2cc921022"
+    },
+    {
+      "user": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "rating": 4,
+      "comment": "Very informative and well-structured.",
+      "_id": "6676f831c8d713a2cc921023"
+    },
+    {
+      "user": {
+        "_id": {
+          "$oid": "6676f7c3f50213a704f31103"
+        },
+        "firstName": "Milan",
+        "lastName": "Vanani",
+        "userName": "milanvanani",
+        "email": "milanvanani000@gmail.com",
+        "role": "admin",
+        "isVerified": false,
+        "courses": [
+          {
+            "$oid": "6676f831c8d713a2cc92101e"
+          }
+        ],
+        "createdAt": {
+          "$date": "2024-06-22T16:11:47.069Z"
+        },
+        "updatedAt": {
+          "$date": "2024-06-22T16:11:47.069Z"
+        },
+        "__v": 0
+      },
+      "rating": 5,
+      "comment": "Good",
+      "_id": {
+        "$oid": "667714249831bc984fac5ce5"
+      }
+    }
+  ],
+  "courseData": [
+    {
+      "title": "Introduction to MERN Stack",
+      "videoUrl": "https://example.com/videos/mern_stack_intro",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_intro.jpg",
+      "videoSection": "Introduction",
+      "description": "Overview of the MERN stack and its components.",
+      "videoLength": 15,
+      "videoPlayer": "HTML5",
+      "suggestions": "Start with understanding the basics of each component.",
+      "link": [
+        {
+          "title": "Official MongoDB Documentation",
+          "url": "https://docs.mongodb.com/",
+          "_id": {
+            "$oid": "6676f831c8d713a2cc921025"
+          }
+        },
+        {
+          "title": "Express.js Guide",
+          "url": "https://expressjs.com/en/starter/guide.html",
+          "_id": {
+            "$oid": "6676f831c8d713a2cc921026"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+          },
+          "comment": "Can I use other databases with the MERN stack?",
+          "commentReplies": [
+            {
+              "user": {
+                "name": "Instructor",
+                "email": "instructor@example.com"
+              },
+              "comment": "Yes, you can replace MongoDB with any database of your choice."
+            }
+          ],
+          "_id": {
+            "$oid": "6676f831c8d713a2cc921027"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6676f831c8d713a2cc921024"
+      },
+      "videoStatus": "pending"
+    },
+    {
+      "title": "Setting Up Your Development Environment",
+      "videoUrl": "https://example.com/videos/mern_stack_setup",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_setup.jpg",
+      "videoSection": "Setup",
+      "description": "Guide to setting up a development environment for MERN stack.",
+      "videoLength": 20,
+      "videoPlayer": "HTML5",
+      "suggestions": "Ensure Node.js and npm are installed before proceeding.",
+      "link": [
+        {
+          "title": "Node.js Official Website",
+          "url": "https://nodejs.org/",
+          "_id": {
+            "$oid": "6676f831c8d713a2cc921029"
+          }
+        },
+        {
+          "title": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/",
+          "_id": {
+            "$oid": "6676f831c8d713a2cc92102a"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Bob Williams",
+            "email": "bob.williams@example.com"
+          },
+          "comment": "Do I need to use a specific code editor?",
+          "commentReplies": [
+            {
+              "user": {
+                "name": "Instructor",
+                "email": "instructor@example.com"
+              },
+              "comment": "No, you can use any code editor, but we recommend Visual Studio Code."
+            }
+          ],
+          "_id": {
+            "$oid": "6676f831c8d713a2cc92102b"
+          }
+        },
+        {
+          "user": {
+            "_id": {
+              "$oid": "6676f7c3f50213a704f31103"
+            },
+            "firstName": "Milan",
+            "lastName": "Vanani",
+            "userName": "milanvanani",
+            "email": "milanvanani000@gmail.com",
+            "role": "admin",
+            "isVerified": false,
+            "courses": [
+              {
+                "$oid": "6676f831c8d713a2cc92101e"
+              }
+            ],
+            "createdAt": {
+              "$date": "2024-06-22T16:11:47.069Z"
+            },
+            "updatedAt": {
+              "$date": "2024-06-22T16:11:47.069Z"
+            },
+            "__v": 0
+          },
+          "question": "Testing",
+          "questionReplies": [
+            {
+              "user": {
+                "_id": {
+                  "$oid": "6676f7c3f50213a704f31103"
+                },
+                "firstName": "Milan",
+                "lastName": "Vanani",
+                "userName": "milanvanani",
+                "email": "milanvanani000@gmail.com",
+                "role": "admin",
+                "isVerified": false,
+                "courses": [
+                  {
+                    "$oid": "6676f831c8d713a2cc92101e"
+                  }
+                ],
+                "createdAt": {
+                  "$date": "2024-06-22T16:11:47.069Z"
+                },
+                "updatedAt": {
+                  "$date": "2024-06-22T16:11:47.069Z"
+                },
+                "__v": 0
+              },
+              "answer": "This is answer"
+            }
+          ],
+          "_id": {
+            "$oid": "66770bb6e4ff492a5d6fe76e"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6676f831c8d713a2cc921028"
+      }
+    },
+    {
+      "title": "test",
+      "videoUrl": "test",
+      "videoStatus": "complated",
+      "videoThumbnail": "",
+      "videoSection": "",
+      "description": "",
+      "videoLength": null,
+      "videoPlayer": "",
+      "suggestions": "",
+      "link": [],
+      "questions": [],
+      "_id": {
+        "$oid": "667ef836c90ba1d4315ced9c"
+      }
+    }
+  ],
+  "ratings": 4.666666666666667,
+  "purchased": 0,
+  "__v": 5,
+  "updatedAt": {
+    "$date": "2024-06-28T18:11:45.378Z"
+  }
+},
+{
+  "_id": {
+    "$oid": "6677c0ee9ebc1e0b5162b834"
+  },
+  "name": "MERN Stack Development",
+  "thumbnail": {
+    "url" : "https://learn.piyushgarg.dev/_next/image?url=https%3A%2F%2Fdcaj3bhl5hivm.cloudfront.net%2F__courses%2F6e30c14b-d3b9-4dfa-b5b8-92171ef1dd72%2FCOURSE_IMAGE%2FCrash%2520Course-r_KK0U.jpg&w=640&q=75"
+  },
+  "description": "A comprehensive course on full-stack development using MongoDB, Express, React, and Node.js.",
+  "price": 199.99,
+  "estimatedPrice": 249.99,
+  "tags": "MERN, Full-Stack, Development",
+  "level": "Intermediate",
+  "demoUrl": "https://example.com/demo/mern_stack_demo",
+  "benifits": [
+    {
+      "title": "Hands-on projects",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b835"
+      }
+    },
+    {
+      "title": "In-depth tutorials",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b836"
+      }
+    },
+    {
+      "title": "Certificate of completion",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b837"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "user": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com"
+      },
+      "rating": 5,
+      "comment": "Excellent course! Highly recommend.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b838"
+      }
+    },
+    {
+      "user": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "rating": 4,
+      "comment": "Very informative and well-structured.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b839"
+      }
+    }
+  ],
+  "courseData": [
+    {
+      "title": "Introduction to MERN Stack",
+      "videoUrl": "https://example.com/videos/mern_stack_intro",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_intro.jpg",
+      "videoSection": "Introduction",
+      "description": "Overview of the MERN stack and its components.",
+      "videoLength": 15,
+      "videoPlayer": "HTML5",
+      "suggestions": "Start with understanding the basics of each component.",
+      "link": [
+        {
+          "title": "Official MongoDB Documentation",
+          "url": "https://docs.mongodb.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83b"
+          }
+        },
+        {
+          "title": "Express.js Guide",
+          "url": "https://expressjs.com/en/starter/guide.html",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83c"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83a"
+      }
+    },
+    {
+      "title": "Setting Up Your Development Environment",
+      "videoUrl": "https://example.com/videos/mern_stack_setup",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_setup.jpg",
+      "videoSection": "Setup",
+      "description": "Guide to setting up a development environment for MERN stack.",
+      "videoLength": 20,
+      "videoPlayer": "HTML5",
+      "suggestions": "Ensure Node.js and npm are installed before proceeding.",
+      "link": [
+        {
+          "title": "Node.js Official Website",
+          "url": "https://nodejs.org/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83f"
+          }
+        },
+        {
+          "title": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b840"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Bob Williams",
+            "email": "bob.williams@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b841"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83e"
+      }
+    }
+  ],
+  "ratings": 4.5,
+  "purchased": 150,
+  "createdAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6677c0ee9ebc1e0b5162b834"
+  },
+  "name": "MERN Stack Development",
+  "thumbnail": {
+    "url" : "https://learn.piyushgarg.dev/_next/image?url=https%3A%2F%2Fdcaj3bhl5hivm.cloudfront.net%2F__courses%2F6e30c14b-d3b9-4dfa-b5b8-92171ef1dd72%2FCOURSE_IMAGE%2FCrash%2520Course-r_KK0U.jpg&w=640&q=75"
+  },
+  "description": "A comprehensive course on full-stack development using MongoDB, Express, React, and Node.js.",
+  "price": 199.99,
+  "estimatedPrice": 249.99,
+  "tags": "MERN, Full-Stack, Development",
+  "level": "Intermediate",
+  "demoUrl": "https://example.com/demo/mern_stack_demo",
+  "benifits": [
+    {
+      "title": "Hands-on projects",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b835"
+      }
+    },
+    {
+      "title": "In-depth tutorials",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b836"
+      }
+    },
+    {
+      "title": "Certificate of completion",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b837"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "user": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com"
+      },
+      "rating": 5,
+      "comment": "Excellent course! Highly recommend.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b838"
+      }
+    },
+    {
+      "user": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "rating": 4,
+      "comment": "Very informative and well-structured.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b839"
+      }
+    }
+  ],
+  "courseData": [
+    {
+      "title": "Introduction to MERN Stack",
+      "videoUrl": "https://example.com/videos/mern_stack_intro",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_intro.jpg",
+      "videoSection": "Introduction",
+      "description": "Overview of the MERN stack and its components.",
+      "videoLength": 15,
+      "videoPlayer": "HTML5",
+      "suggestions": "Start with understanding the basics of each component.",
+      "link": [
+        {
+          "title": "Official MongoDB Documentation",
+          "url": "https://docs.mongodb.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83b"
+          }
+        },
+        {
+          "title": "Express.js Guide",
+          "url": "https://expressjs.com/en/starter/guide.html",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83c"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83a"
+      }
+    },
+    {
+      "title": "Setting Up Your Development Environment",
+      "videoUrl": "https://example.com/videos/mern_stack_setup",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_setup.jpg",
+      "videoSection": "Setup",
+      "description": "Guide to setting up a development environment for MERN stack.",
+      "videoLength": 20,
+      "videoPlayer": "HTML5",
+      "suggestions": "Ensure Node.js and npm are installed before proceeding.",
+      "link": [
+        {
+          "title": "Node.js Official Website",
+          "url": "https://nodejs.org/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83f"
+          }
+        },
+        {
+          "title": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b840"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Bob Williams",
+            "email": "bob.williams@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b841"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83e"
+      }
+    }
+  ],
+  "ratings": 4.5,
+  "purchased": 150,
+  "createdAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6677c0ee9ebc1e0b5162b834"
+  },
+  "name": "MERN Stack Development",
+  "thumbnail": {
+    "url" : "https://learn.piyushgarg.dev/_next/image?url=https%3A%2F%2Fdcaj3bhl5hivm.cloudfront.net%2F__courses%2F6e30c14b-d3b9-4dfa-b5b8-92171ef1dd72%2FCOURSE_IMAGE%2FCrash%2520Course-r_KK0U.jpg&w=640&q=75"
+  },
+  "description": "A comprehensive course on full-stack development using MongoDB, Express, React, and Node.js.",
+  "price": 199.99,
+  "estimatedPrice": 249.99,
+  "tags": "MERN, Full-Stack, Development",
+  "level": "Intermediate",
+  "demoUrl": "https://example.com/demo/mern_stack_demo",
+  "benifits": [
+    {
+      "title": "Hands-on projects",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b835"
+      }
+    },
+    {
+      "title": "In-depth tutorials",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b836"
+      }
+    },
+    {
+      "title": "Certificate of completion",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b837"
+      }
+    }
+  ],
+  "reviews": [
+    {
+      "user": {
+        "name": "Jane Doe",
+        "email": "jane.doe@example.com"
+      },
+      "rating": 5,
+      "comment": "Excellent course! Highly recommend.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b838"
+      }
+    },
+    {
+      "user": {
+        "name": "John Smith",
+        "email": "john.smith@example.com"
+      },
+      "rating": 4,
+      "comment": "Very informative and well-structured.",
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b839"
+      }
+    }
+  ],
+  "courseData": [
+    {
+      "title": "Introduction to MERN Stack",
+      "videoUrl": "https://example.com/videos/mern_stack_intro",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_intro.jpg",
+      "videoSection": "Introduction",
+      "description": "Overview of the MERN stack and its components.",
+      "videoLength": 15,
+      "videoPlayer": "HTML5",
+      "suggestions": "Start with understanding the basics of each component.",
+      "link": [
+        {
+          "title": "Official MongoDB Documentation",
+          "url": "https://docs.mongodb.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83b"
+          }
+        },
+        {
+          "title": "Express.js Guide",
+          "url": "https://expressjs.com/en/starter/guide.html",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83c"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Alice Johnson",
+            "email": "alice.johnson@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83d"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83a"
+      }
+    },
+    {
+      "title": "Setting Up Your Development Environment",
+      "videoUrl": "https://example.com/videos/mern_stack_setup",
+      "videoThumbnail": "https://example.com/thumbnails/mern_stack_setup.jpg",
+      "videoSection": "Setup",
+      "description": "Guide to setting up a development environment for MERN stack.",
+      "videoLength": 20,
+      "videoPlayer": "HTML5",
+      "suggestions": "Ensure Node.js and npm are installed before proceeding.",
+      "link": [
+        {
+          "title": "Node.js Official Website",
+          "url": "https://nodejs.org/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b83f"
+          }
+        },
+        {
+          "title": "Visual Studio Code",
+          "url": "https://code.visualstudio.com/",
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b840"
+          }
+        }
+      ],
+      "questions": [
+        {
+          "user": {
+            "name": "Bob Williams",
+            "email": "bob.williams@example.com"
+          },
+          "questionReplies": [],
+          "_id": {
+            "$oid": "6677c0ee9ebc1e0b5162b841"
+          }
+        }
+      ],
+      "_id": {
+        "$oid": "6677c0ee9ebc1e0b5162b83e"
+      }
+    }
+  ],
+  "ratings": 4.5,
+  "purchased": 150,
+  "createdAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "updatedAt": {
+    "$date": "2024-06-23T06:30:06.854Z"
+  },
+  "__v": 0
+}]

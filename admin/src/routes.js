@@ -7,6 +7,7 @@ import Invoices from './pages/Invoices';
 import Courses from './pages/Courses';
 import CourseAnytics from './pages/CourseAnalytics';
 import Notifications from './pages/Notifications';
+import CreateCourse from './pages/CreateCourse';
 
 const router = createBrowserRouter([
     {
@@ -32,6 +33,10 @@ const router = createBrowserRouter([
     {
         path: "/courses",
         element: <Courses />
+    },
+    {
+        path: "/create-course",
+        element: <CreateCourse />
     },
     {
         path: "/courses-analytics",
